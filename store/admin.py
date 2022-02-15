@@ -1,8 +1,14 @@
 from django.contrib import admin
 
 from .models.category import Category
-from .models.prouduct import Product
+from .models.product import Product
 
 # Register your models here.
-admin.site.register(Product)
-admin.site.register(Category)
+
+class AdminProduct(admin.ModelAdmin):
+    list_display = ['id','name','price','category','description','image']
+
+class AdminCategory(admin.ModelAdmin):
+    list_display = ['id','name']
+admin.site.register(Product,AdminProduct)
+admin.site.register(Category,AdminCategory)
